@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "homepage": "https://zhangbowen-github.github.io/live-project/",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
