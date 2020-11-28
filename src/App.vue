@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
-      <NavBar />
+      <NavBar :navItems="navItems" />
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -18,18 +18,24 @@
 <script lang="ts">
 import NavBar from "@/components/navBar";
 import { Component, Vue } from "vue-property-decorator";
-
+import { INavItem } from "@/components/navBar/index.d";
 @Component({
   components: {
     NavBar
   }
 })
 export default class App extends Vue {
-  drawer = false;
+  private drawer = false;
+  private navItems: INavItem[] = [
+    { text: "主页", icon: "mdi-home", to: "/" },
+    { text: "随机博彩", icon: "mdi-numeric-8-circle-outline", to: "/lottery" },
+    { text: "设置", icon: "mdi-numeric-8-circle-outline", to: "/setting" },
+    { text: "待定", icon: "mdi-flag", to: "/222" }
+  ];
 }
 </script>
 <style lang="scss" scoped>
- .v-application{
-   overflow: hidden;
- }
+.v-application {
+  overflow: hidden;
+}
 </style>

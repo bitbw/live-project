@@ -60,13 +60,13 @@
                 dark
                 @click="handleRandom(dataGroup)"
               >
-                {{randomBtn}}
+                {{ randomBtn }}
               </v-btn>
             </v-col>
             <!-- 前区 -->
             <v-col cols="12" md="8">
               <v-autocomplete
-              rounded
+                rounded
                 v-model="dataGroup.beforeSelected"
                 :disabled="autoUpdate"
                 :items="dataGroup.beforeRaw"
@@ -106,7 +106,7 @@
             <!-- 后区 -->
             <v-col cols="12" md="4">
               <v-autocomplete
-              rounded
+                rounded
                 v-model="dataGroup.afterSelected"
                 :disabled="autoUpdate"
                 :items="dataGroup.afterRaw"
@@ -177,11 +177,11 @@ export default class VueComponent extends Vue {
   // 双色
   twoToneData: any = {
     name: "双色球",
-    beforeOption:{
-      label:'红球'
+    beforeOption: {
+      label: "红球"
     },
-    afterOption:{
-      label:'篮球'
+    afterOption: {
+      label: "篮球"
     },
     beforeRaw: [],
     afterRaw: [],
@@ -191,11 +191,11 @@ export default class VueComponent extends Vue {
   // 超级大
   superBigData: any = {
     name: "大乐透",
-    beforeOption:{
-      label:'前区'
+    beforeOption: {
+      label: "前区"
     },
-    afterOption:{
-      label:'后区'
+    afterOption: {
+      label: "后区"
     },
     beforeRaw: [],
     afterRaw: [],
@@ -258,8 +258,8 @@ export default class VueComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
-::v-deep{
-  .v-select__selections{
+::v-deep {
+  .v-select__selections {
     padding-top: 30px !important;
     padding-bottom: 10px;
   }

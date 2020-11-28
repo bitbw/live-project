@@ -1,5 +1,5 @@
 <template>
-  <v-card dark flat color="setting-container">
+  <v-card dark flat class="setting-container">
     <v-toolbar flat height="72">
       <v-switch
         v-model="$vuetify.theme.dark"
@@ -22,7 +22,7 @@
       <v-divider class="mb-y"></v-divider>
 
       <v-theme-provider root>
-        <v-list >
+        <v-list>
           <v-subheader>
             <span>I inherit from the root</span>
 
@@ -49,9 +49,7 @@ export default class VueComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .setting-container {
-    height: 100%;
-  }
+.setting-container {
+  height: 100%;
 }
 </style>
