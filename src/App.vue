@@ -28,3 +28,8 @@ export default class App extends Vue {
   drawer = false;
 }
 </script>
+<style lang="scss" scoped>
+ .v-application{
+   overflow: hidden;
+ }
+</style>

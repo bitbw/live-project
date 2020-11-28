@@ -1,5 +1,5 @@
 <template>
-  <v-card color="blue-grey darken-1" dark :loading="isUpdating" height="100%">
+  <v-card color="orange" dark :loading="isUpdating" height="100%">
     <template v-slot:progress>
       <v-progress-linear
         absolute
@@ -8,7 +8,7 @@
         indeterminate
       ></v-progress-linear>
     </template>
-    <v-img height="300" src="https://picsum.photos/500/300">
+    <v-img height="200" src="https://picsum.photos/500/300">
       <v-row>
         <v-col class="text-right" cols="12">
           <v-menu bottom left transition="slide-y-transition">
@@ -42,7 +42,7 @@
     </v-img>
     <v-form>
       <v-container>
-        <!-- 双色 -->
+        <!-- 选区 -->
         <template v-for="(dataGroup, gIndex) in dataGroups">
           <v-row :key="gIndex + dataGroup.name">
             <v-col cols="12">
@@ -56,32 +56,35 @@
               <v-btn
                 :disabled="autoUpdate"
                 rounded
-                color="primary"
+                color="deep-orange darken-1"
                 dark
                 @click="handleRandom(dataGroup)"
               >
-                随机
+                {{randomBtn}}
               </v-btn>
             </v-col>
+            <!-- 前区 -->
             <v-col cols="12" md="8">
               <v-autocomplete
+              rounded
                 v-model="dataGroup.beforeSelected"
-                :disabled="isUpdating"
+                :disabled="autoUpdate"
                 :items="dataGroup.beforeRaw"
+                disable-lookup
                 filled
                 chips
                 color="blue-grey lighten-2"
-                label="Select"
+                :label="dataGroup.beforeOption.label"
                 item-text="name"
                 item-value="id"
                 multiple
+                hide-details
               >
                 <template v-slot:selection="data">
                   <v-chip
-                    color="red"
+                    color="red accent-2"
                     v-bind="data.attrs"
                     :input-value="data.selected"
-                    close
                     @click="data.select"
                     @click:close="remove(dataGroup.beforeRaw, data.item)"
                   >
@@ -100,26 +103,28 @@
                 </template>
               </v-autocomplete>
             </v-col>
-
+            <!-- 后区 -->
             <v-col cols="12" md="4">
               <v-autocomplete
+              rounded
                 v-model="dataGroup.afterSelected"
-                :disabled="isUpdating"
+                :disabled="autoUpdate"
                 :items="dataGroup.afterRaw"
+                disable-lookup
                 filled
                 chips
                 color="blue-grey lighten-2"
-                label="Select"
+                :label="dataGroup.afterOption.label"
                 item-text="name"
                 item-value="id"
                 multiple
+                hide-details
               >
                 <template v-slot:selection="data">
                   <v-chip
-                    color="primary"
+                    color="cyan lighten-1"
                     v-bind="data.attrs"
                     :input-value="data.selected"
-                    close
                     @click="data.select"
                     @click:close="remove(dataGroup.afterRaw, data.item)"
                   >
@@ -144,21 +149,21 @@
       <v-switch
         v-model="autoUpdate"
         class="mt-0"
-        color="green lighten-2"
+        color="deep-orange darken-1"
         hide-details
-        label="Auto Update"
+        label="锁定号码"
       ></v-switch>
       <v-spacer></v-spacer>
       <v-btn
         :disabled="autoUpdate"
-        color="blue-grey darken-3"
-        depressed
+        color="deep-orange darken-1"
+        rounded
         @click="handleUpdate"
       >
         <v-icon left>
           mdi-update
         </v-icon>
-        Update Now
+        重置
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -171,7 +176,13 @@ export default class VueComponent extends Vue {
   public refs!: { [x: string]: any };
   // 双色
   twoToneData: any = {
-    name: "twoTone",
+    name: "双色球",
+    beforeOption:{
+      label:'红球'
+    },
+    afterOption:{
+      label:'篮球'
+    },
     beforeRaw: [],
     afterRaw: [],
     beforeSelected: [],
@@ -179,7 +190,13 @@ export default class VueComponent extends Vue {
   };
   // 超级大
   superBigData: any = {
-    name: "superBig",
+    name: "大乐透",
+    beforeOption:{
+      label:'前区'
+    },
+    afterOption:{
+      label:'后区'
+    },
     beforeRaw: [],
     afterRaw: [],
     beforeSelected: [],
@@ -189,8 +206,9 @@ export default class VueComponent extends Vue {
   dataGroups = [this.twoToneData, this.superBigData];
   autoUpdate = false;
   isUpdating = false;
-  name = "Midnight Crew";
-  title = "The summer breeze";
+  name = "获取您专属的幸运数字";
+  title = "Get your own lucky number";
+  randomBtn = "获取幸运数字";
   mounted() {
     this.dataGroups[0].beforeRaw = this.getArray(1, 33);
     this.dataGroups[0].afterRaw = this.getArray(1, 16);
@@ -239,4 +257,11 @@ export default class VueComponent extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+::v-deep{
+  .v-select__selections{
+    padding-top: 30px !important;
+    padding-bottom: 10px;
+  }
+}
+</style>
