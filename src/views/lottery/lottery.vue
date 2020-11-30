@@ -47,11 +47,12 @@
           <v-row :key="gIndex + dataGroup.name">
             <v-col cols="12">
               <h3 class="headline">
-                {{ dataGroup.name }}
+                {{ dataGroup.showName }}
               </h3>
 
               <v-divider></v-divider>
             </v-col>
+            <!-- 按钮 -->
             <v-col cols="12">
               <v-btn
                 :disabled="autoUpdate"
@@ -88,9 +89,6 @@
                     @click="data.select"
                     @click:close="remove(dataGroup.beforeRaw, data.item)"
                   >
-                    <!-- <v-avatar left>
-                    <v-img :src="data.item.avatar"></v-img>
-                  </v-avatar> -->
                     {{ data.item.name }}
                   </v-chip>
                 </template>
@@ -175,8 +173,9 @@ import { Component, Vue } from "vue-property-decorator";
 export default class VueComponent extends Vue {
   public refs!: { [x: string]: any };
   // 双色
-  twoToneData: any = {
-    name: "双色球",
+  private twoToneData: any = {
+    showName: "双色球",
+    name: "twoTone",
     beforeOption: {
       label: "红球"
     },
@@ -189,8 +188,9 @@ export default class VueComponent extends Vue {
     afterSelected: []
   };
   // 超级大
-  superBigData: any = {
-    name: "大乐透",
+  private superBigData: any = {
+    showName: "大乐透",
+    name: "superBig",
     beforeOption: {
       label: "前区"
     },
@@ -203,12 +203,12 @@ export default class VueComponent extends Vue {
     afterSelected: []
   };
   // 集合
-  dataGroups = [this.twoToneData, this.superBigData];
-  autoUpdate = false;
-  isUpdating = false;
-  name = "获取您专属的幸运数字";
-  title = "Get your own lucky number";
-  randomBtn = "获取幸运数字";
+  private dataGroups = [this.twoToneData, this.superBigData];
+  private autoUpdate = false;
+  private isUpdating = false;
+  private name = "获取您专属的幸运数字";
+  private title = "Get your own lucky number";
+  private randomBtn = "获取幸运数字";
   mounted() {
     this.dataGroups[0].beforeRaw = this.getArray(1, 33);
     this.dataGroups[0].afterRaw = this.getArray(1, 16);
@@ -249,7 +249,6 @@ export default class VueComponent extends Vue {
       this.handleRandom(Group);
     }
   }
-
   remove(selected: any[], item: any) {
     const index = selected.indexOf(item.id);
     if (index >= 0) selected.splice(index, 1);

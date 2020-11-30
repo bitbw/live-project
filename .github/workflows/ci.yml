@@ -12,14 +12,14 @@ jobs:
   # 任务名称
   build-and-deploy:
     # 任务运行的容器类型（虚拟机环境）
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
     # 任务执行的步骤
     steps:
       # 步骤名称
       - name: Checkout 🛎️
         # 使用的操作 actions，可以使用公共仓库，本地仓库，别人的仓库的action
         # 拉取代码
-        uses: actions/checkout@master
+        uses: actions/checkout@master # 将代码拷贝到虚机中
 
       - name: Build and Deploy
         # 构建发布 Github pages
