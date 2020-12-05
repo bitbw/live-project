@@ -41,7 +41,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 @Component({})
-export default class VueComponent extends Vue {
+export default class Setting extends Vue {
   @Prop({ type: Object, default: () => ({}) }) readonly attrs: any;
   public refs!: { [x: string]: any };
   private items = ["One", "Two", "Three"];
