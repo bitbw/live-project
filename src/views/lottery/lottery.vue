@@ -170,7 +170,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 @Component({})
-export default class VueComponent extends Vue {
+export default class Lottery extends Vue {
   public refs!: { [x: string]: any };
   // 双色
   private twoToneData: any = {

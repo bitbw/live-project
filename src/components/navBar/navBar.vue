@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="300" height="100%">
+  <v-card class="mx-auto"  height="100%">
     <v-list shaped>
       <v-subheader>菜单</v-subheader>
       <v-list-item-group v-model="selectedItem" color="primary">

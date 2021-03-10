@@ -1,6 +1,12 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer
+      v-model="drawer"
+      disable-resize-watcher
+      bottom
+      mobile-breakpoint="960"
+      app
+    >
       <NavBar :navItems="navItems" />
     </v-navigation-drawer>
 
@@ -18,6 +24,7 @@
 <script lang="ts">
 import NavBar from "@/components/navBar";
 import { Component, Vue } from "vue-property-decorator";
+import { navItems } from "@/libs/navData";
 import { INavItem } from "@/components/navBar/index.d";
 @Component({
   components: {
@@ -25,13 +32,8 @@ import { INavItem } from "@/components/navBar/index.d";
   }
 })
 export default class App extends Vue {
-  private drawer = false;
-  private navItems: INavItem[] = [
-    { text: "主页", icon: "mdi-home", to: "/" },
-    { text: "随机博彩", icon: "mdi-numeric-8-circle-outline", to: "/lottery" },
-    { text: "设置", icon: "mdi-numeric-8-circle-outline", to: "/setting" },
-    { text: "待定", icon: "mdi-flag", to: "/222" }
-  ];
+  private drawer = true;
+  private navItems: INavItem[] = navItems;
 }
 </script>
 <style lang="scss" scoped>
