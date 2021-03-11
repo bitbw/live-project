@@ -7,7 +7,7 @@
       mobile-breakpoint="960"
       app
     >
-      <NavBar :navItems="navItems" />
+      <NavBar :navItemsUS="navItemsUS" :navItemsCN="navItemsCN" />
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -24,7 +24,7 @@
 <script lang="ts">
 import NavBar from "@/components/navBar";
 import { Component, Vue } from "vue-property-decorator";
-import { navItems } from "@/libs/navData";
+import { navItemsUS, navItemsCN } from "@/libs/navData";
 import { INavItem } from "@/components/navBar/index.d";
 @Component({
   components: {
@@ -33,7 +33,8 @@ import { INavItem } from "@/components/navBar/index.d";
 })
 export default class App extends Vue {
   private drawer = true;
-  private navItems: INavItem[] = navItems;
+  private navItemsUS: INavItem[] = navItemsUS;
+  private navItemsCN: INavItem[] = navItemsCN;
 }
 </script>
 <style lang="scss" scoped>

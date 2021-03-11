@@ -174,13 +174,13 @@ export default class Lottery extends Vue {
   public refs!: { [x: string]: any };
   // 双色
   private twoToneData: any = {
-    showName: "双色球",
+    showName: this.$t("lottery.twoTone"),
     name: "twoTone",
     beforeOption: {
-      label: "红球"
+      label: this.$t("lottery.redball")
     },
     afterOption: {
-      label: "篮球"
+      label: this.$t("lottery.basketball")
     },
     beforeRaw: [],
     afterRaw: [],
@@ -189,13 +189,13 @@ export default class Lottery extends Vue {
   };
   // 超级大
   private superBigData: any = {
-    showName: "大乐透",
+    showName: this.$t("lottery.superBig"),
     name: "superBig",
     beforeOption: {
-      label: "前区"
+      label: this.$t("lottery.frontZone")
     },
     afterOption: {
-      label: "后区"
+      label: this.$t("lottery.backZone")
     },
     beforeRaw: [],
     afterRaw: [],
@@ -206,9 +206,9 @@ export default class Lottery extends Vue {
   private dataGroups = [this.twoToneData, this.superBigData];
   private autoUpdate = false;
   private isUpdating = false;
-  private name = "获取您专属的幸运数字";
+  private name = this.$t("lottery.title");
   private title = "Get your own lucky number";
-  private randomBtn = "获取幸运数字";
+  private randomBtn = this.$t("lottery.getLuckyNumbers");
   mounted() {
     this.dataGroups[0].beforeRaw = this.getArray(1, 33);
     this.dataGroups[0].afterRaw = this.getArray(1, 16);

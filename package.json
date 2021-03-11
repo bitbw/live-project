@@ -6,13 +6,14 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "update":"git add . && git commit -m 'update' && git push"
+    "update": "git add . && git commit -m 'update' && git push"
   },
   "homepage": "https://zhangbowen-github.github.io/live-project/",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
+    "vue-i18n": "^8.24.0",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",

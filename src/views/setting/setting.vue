@@ -5,9 +5,16 @@
         v-model="$vuetify.theme.dark"
         hint="This toggles the global state of the Vuetify theme"
         inset
-        label="切换主题"
+        :label="$t('toggles') + ' ' + $t('setting.theme')"
         persistent-hint
       ></v-switch>
+    </v-toolbar>
+    <v-toolbar flat height="72">
+      <v-select
+        :items="languageList"
+        :label="$t('toggles') + ' ' + $t('setting.language')"
+        v-model="$i18n.locale"
+      ></v-select>
     </v-toolbar>
 
     <v-card-text>
@@ -40,11 +47,15 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+// import { languageList } from "@/plugins/i18n";
 @Component({})
 export default class Setting extends Vue {
   @Prop({ type: Object, default: () => ({}) }) readonly attrs: any;
   public refs!: { [x: string]: any };
   private items = ["One", "Two", "Three"];
+  get languageList() {
+    return Object.keys(this.$i18n.messages);
+  }
 }
 </script>
 

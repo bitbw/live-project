@@ -1,5 +1,5 @@
 const cloneDeep: any = (obj: any) => {
-  const type:string = Object.prototype.toString.call(obj); //通过原型对象获取对象类型
+  const type: string = Object.prototype.toString.call(obj); //通过原型对象获取对象类型
   let newObj: any;
   if (type === "[object Array]") {
     //数组

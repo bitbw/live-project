@@ -1,7 +1,7 @@
 <template>
-  <v-card class="mx-auto"  height="100%">
+  <v-card class="mx-auto" height="100%">
     <v-list shaped>
-      <v-subheader>菜单</v-subheader>
+      <v-subheader>{{ $t("menu") }}</v-subheader>
       <v-list-item-group v-model="selectedItem" color="primary">
         <v-list-item v-for="(item, i) in navItems" :key="i" :to="item.to">
           <v-list-item-icon>
@@ -24,8 +24,13 @@ import { INavItem } from "./index.d";
   components: {}
 })
 export default class NavBar extends Vue {
-  @Prop({ type: Array, default: () => [] }) readonly navItems?: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsUS?: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsCN?: INavItem[];
 
   private selectedItem = 1;
+
+  get navItems() {
+    return this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
+  }
 }
 </script>

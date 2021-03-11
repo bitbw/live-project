@@ -1,41 +1,56 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col cols="4">
-        <v-text-field
-          label="Money Spent Each Time"
-          type="number"
-          v-model.number="moneySpentEachTime"
-          suffix="￥"
-        ></v-text-field>
-      </v-col>
-      <v-col cols="4">
-        <v-text-field
-          label="Frequency"
-          type="number"
-          v-model.number="totalFrequency"
-          suffix="Frequency"
-        ></v-text-field>
-      </v-col>
-      <v-col cols="4">
-        <v-btn color="secondary" dark @click="handleCalc">
-          calculate
-        </v-btn>
-      </v-col>
-    </v-row>
+    <!-- calculate -->
+    <v-card flat class="calculate-container">
+      <v-toolbar dense elevation="0">
+        <v-icon left size="30">mdi-alarm-panel-outline</v-icon>
+        <v-toolbar-title>{{ $t("calculate") }}</v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-text-field
+              :label="$t('subway.moneySpentEachTime')"
+              type="number"
+              v-model.number="moneySpentEachTime"
+              suffix="￥"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-text-field
+              :label="$t('subway.totalFrequency')"
+              type="number"
+              v-model.number="totalFrequency"
+              suffix="Frequency"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-btn color="secondary" dark @click="handleCalc">
+              {{ $t("calculate") }}
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="1">
+            <v-toolbar-title>{{ $t("result") }}</v-toolbar-title>
+          </v-col>
+          <v-col cols="12" md="8">
+            <v-text-field
+              disabled
+              :value="resultMoney"
+              suffix="￥"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
 
-    <v-row>
-      <v-col cols="1">
-        <v-subheader>result</v-subheader>
-      </v-col>
-      <v-col cols="8">
-        <v-text-field disabled :value="resultMoney" suffix="￥"></v-text-field>
-      </v-col>
-    </v-row>
+    <!-- ladder -->
     <v-card flat class="ladder-container">
       <v-toolbar dense elevation="0">
         <v-icon left size="30">mdi-animation</v-icon>
-        <v-toolbar-title>ladder</v-toolbar-title>
+        <v-toolbar-title>{{ $t("subway.ladder") }}</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text>
@@ -47,32 +62,35 @@
               :key="`${ladder.name}-${ladder.id}`"
               class="ma-0"
             >
-              <v-col cols="2" md="2">
-                <v-text-field label="name" v-model="ladder.name"></v-text-field>
-              </v-col>
-              <v-col cols="2" md="2">
+              <v-col cols="12" md="2">
                 <v-text-field
-                  label="lowerLimit"
+                  :label="$t('name')"
+                  v-model="ladder.name"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="2">
+                <v-text-field
+                  :label="$t('subway.lowerLimit')"
                   v-model="ladder.lowerLimit"
                   suffix="￥"
                 ></v-text-field>
               </v-col>
-              <v-col cols="2" md="2">
+              <v-col cols="12" md="2">
                 <v-text-field
-                  label="upperLimit"
+                  :label="$t('subway.upperLimit')"
                   v-model="ladder.upperLimit"
                   suffix="￥"
                 ></v-text-field>
               </v-col>
-              <v-col cols="2" md="2">
+              <v-col cols="12" md="2">
                 <v-text-field
-                  label="discont"
+                  :label="$t('subway.discont')"
                   v-model="ladder.discont"
                   suffix="%"
                 ></v-text-field>
               </v-col>
               <!-- 删除按钮 -->
-              <v-col cols="2" md="2">
+              <v-col cols="12" md="2">
                 <v-btn icon @click="handleRemoveladder(index)">
                   <v-icon>mdi-trash-can</v-icon>
                 </v-btn>
@@ -83,7 +101,7 @@
           <v-col cols="12">
             <v-btn tile @click="handleAddladder()">
               <v-icon left>mdi-plus</v-icon>
-              <span>add</span>
+              <span>{{ $t("add") }}</span>
             </v-btn>
           </v-col>
         </v-row>
@@ -121,59 +139,46 @@ export default class Subway extends Vue {
       return;
     }
     const firstLadder = this.ladders[0];
-    const { currentTotalMoney, currentTotalFrequency } = this.ladders.reduce(
-      (total: any, ladder, i) => {
-        return ladder.calc(
-          total.currentTotalMoney,
-          total.currentTotalFrequency,
-          this.moneySpentEachTime,
-          this.totalFrequency
-        );
+    const starDate = {
+      currentTotalMoney: firstLadder.lowerLimit, // 当前阶段前面所有money的汇总
+      currentTotalFrequency: 0 // 当前阶段前面所有次数的汇总
+    };
+    // use reduce
+    const { currentTotalMoney } = this.ladders.reduce(
+      (total: any, ladder) => {
+        const option = {
+          starMoney: total.currentTotalMoney,
+          starFrequency: total.currentTotalFrequency,
+          moneySpentEachTime: this.moneySpentEachTime,
+          totalFrequency: this.totalFrequency
+        };
+        return ladder.calc(option);
       },
-      {
-        currentTotalMoney: firstLadder.lowerLimit,
-        currentTotalFrequency: 0
-      }
+      starDate
     );
-
-    // const [ladder1, ladder2, ladder3] = this.ladders;
-    // // 阶段1
-    // ladder1.frequency = Math.ceil(100 / this.moneySpentEachTime);
-    // ladder1.calc(this.moneySpentEachTime, 1);
-    // // 阶段2
-    // ladder2.frequency = this.handleLessThan0(
-    //   Math.ceil((150 - ladder1.money) / (this.moneySpentEachTime * 0.8))
-    // );
-    // ladder2.calc(this.moneySpentEachTime, 0.8);
-    // // 阶段3
-    // ladder3.frequency = this.handleLessThan0(
-    //   this.frequency - (ladder1.frequency + ladder2.frequency)
-    // );
-    // ladder3.calc(this.moneySpentEachTime, 0.5);
-    // 汇总
     this.resultMoney = currentTotalMoney;
   }
+  // add
   private handleAddladder() {
     let lowerLimit = Number(this.ladders[this.ladders.length - 1].upperLimit);
-    lowerLimit = isNaN(lowerLimit) ? 666 : lowerLimit;
+    lowerLimit = isNaN(lowerLimit) ? 0 : lowerLimit;
     this.ladders.push(
       new Ladder({
         ...this.editLadder,
         lowerLimit,
+        upperLimit: "*",
         id: this.ladders.length + 1,
         name: `ladder${this.ladders.length + 1}`
       })
     );
   }
+  // remove
   private handleRemoveladder(index: number) {
     this.ladders.splice(index, 1);
   }
-  // 处理 小于0的 数字
-  private handleLessThan0(num: number) {
-    return num < 0 ? 0 : num;
-  }
   created() {
     this.ladders = defaultLadders();
+    (window as any).sub = this;
   }
 }
 </script>

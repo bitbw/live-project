@@ -4,7 +4,11 @@
       <template v-for="(item, i) in items">
         <v-col :key="i" cols="12" md="4">
           <v-hover v-slot="{ hover }">
-            <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" v-ripple>
+            <v-card
+              :elevation="hover ? 12 : 2"
+              :class="{ 'on-hover': hover }"
+              v-ripple
+            >
               <v-img :src="item.img" height="225px">
                 <v-card-title class="title white--text">
                   <v-row
@@ -59,8 +63,7 @@ export default class NavBar extends Vue {
       title: "Rock",
       text: "Greatest Rock Hits",
       subtext: "Lose yourself in rock tunes.",
-      img:
-        "https://cdn.vuetifyjs.com/images/cards/road.jpg"
+      img: "https://cdn.vuetifyjs.com/images/cards/road.jpg"
     },
     {
       title: "Mellow Moods",

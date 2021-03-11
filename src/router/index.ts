@@ -16,7 +16,8 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "lottery" */ "../views/lottery")
+    component: () =>
+      import(/* webpackChunkName: "lottery" */ "../views/lottery")
   },
   {
     path: "/subway",
@@ -32,7 +33,8 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "setting" */ "../views/setting")
+    component: () =>
+      import(/* webpackChunkName: "setting" */ "../views/setting")
   }
 ];
 

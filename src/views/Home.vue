@@ -9,7 +9,7 @@
 import { Component, Vue } from "vue-property-decorator";
 // import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import CardNavBar from "@/components/cardNavBar"; // @ is an alias to /src
-import  { navItems } from '@/libs/navData'
+import { navItemsUS, navItemsCN } from "@/libs/navData";
 import { INavItem } from "@/components/navBar/index.d";
 
 @Component({
@@ -19,7 +19,7 @@ import { INavItem } from "@/components/navBar/index.d";
   }
 })
 export default class Home extends Vue {
-  private navItems: INavItem[] = navItems
+  private navItems: INavItem[] = navItemsUS;
 }
 </script>
 <style lang="scss" scoped>
