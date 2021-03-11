@@ -18,7 +18,6 @@ export class Ladder {
     moneySpentEachTime: number,
     totalFrequency: number
   ) {
-      debugger;
     if (typeof this.upperLimit === "number") {
       this.frequency = Math.ceil(
         (this.upperLimit - starMoney) /

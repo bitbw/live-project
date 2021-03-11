@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "update":"git add . && git commit -m 'update' && git push"
   },
   "homepage": "https://zhangbowen-github.github.io/live-project/",
   "dependencies": {
