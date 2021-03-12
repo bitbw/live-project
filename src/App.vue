@@ -10,7 +10,9 @@
     </v-system-bar> -->
     <!-- 头部 总是放在应用顶部，优先级低于 v-system-bar -->
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click="drawerFlag = !drawerFlag"
+      ></v-app-bar-nav-icon>
       <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar>
 
@@ -53,12 +55,11 @@ import { INavItem } from "@/components/navBar/index.d";
   }
 })
 export default class App extends Vue {
-
-  // private drawer = true;
+  private drawerFlag = false;
   private navItemsUS: INavItem[] = navItemsUS;
   private navItemsCN: INavItem[] = navItemsCN;
-  get drawer(){
-    return  this.$vuetify.breakpoint.width > 960
+  get drawer() {
+    return this.$vuetify.breakpoint.width > 960 || this.drawerFlag;
   }
 }
 </script>
