@@ -17,20 +17,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { INavItem } from "./index.d";
 
 @Component({
   components: {}
 })
 export default class NavBar extends Vue {
-  @Prop({ type: Array, default: () => [] }) readonly navItemsUS?: INavItem[];
-  @Prop({ type: Array, default: () => [] }) readonly navItemsCN?: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsUS!: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsCN!: INavItem[];
 
   private selectedItem = 1;
 
   get navItems() {
     return this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
   }
+  mounted() {
+    // this.selectedItem = this.navItems.findIndex(i => i.to === window.location.hash.replace(/#/,'')) + 1;
+  }
+  // @Watch("$route.path", { immediate: true })
+  // handleRoute(val: string) {
+  //   console.log("Bowen: NavBar -> handleRoute -> val", val);
+  // }
 }
 </script>

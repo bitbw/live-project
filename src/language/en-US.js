@@ -22,6 +22,7 @@ module.exports = {
   calculate: "Calculate",
   result: "Result",
   toggles: "Toggles",
+  todo: "To be determined",
   setting: {
     theme: "Theme",
     language: "Language"

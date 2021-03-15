@@ -47,12 +47,12 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-// import { languageList } from "@/plugins/i18n";
 @Component({})
 export default class Setting extends Vue {
   @Prop({ type: Object, default: () => ({}) }) readonly attrs: any;
   public refs!: { [x: string]: any };
   private items = ["One", "Two", "Three"];
+  // 语言选项列表
   get languageList() {
     return Object.keys(this.$i18n.messages);
   }

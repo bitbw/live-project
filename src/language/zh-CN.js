@@ -22,6 +22,7 @@ module.exports = {
   calculate: "计算",
   result: "结果",
   toggles: "切换",
+  todo:"待完成",
   setting: {
     theme: "主题",
     language: "语言"

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-    <CardNavBar />
+    <CardNavBar :navItemsUS="navItemsUS" :navItemsCN="navItemsCN" />
   </div>
 </template>
 
@@ -19,7 +19,12 @@ import { INavItem } from "@/components/navBar/index.d";
   }
 })
 export default class Home extends Vue {
-  private navItems: INavItem[] = navItemsUS;
+  private get navItemsUS(): INavItem[] {
+    return navItemsUS.filter(i => i.name !== "home");
+  }
+  private get navItemsCN(): INavItem[] {
+    return navItemsCN.filter(i => i.name !== "home");
+  }
 }
 </script>
 <style lang="scss" scoped>

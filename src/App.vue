@@ -19,9 +19,10 @@
     <!-- 侧边导航 可以放置在应用的左边或右边，并且可以配置在 v-app-bar 的旁边或下面 -->
     <v-navigation-drawer
       app
-      :value="drawer"
-      disable-resize-watcher
+      v-model="drawerFlag"
       bottom
+      hide-overlay
+      disable-resize-watcher
       mobile-breakpoint="960"
     >
       <NavBar :navItemsUS="navItemsUS" :navItemsCN="navItemsCN" />
@@ -34,7 +35,7 @@
     </v-main>
 
     <!-- 底部导航 总是放在应用底部，优先级高于 v-footer -->
-    <BottomNav />
+    <BottomNav :navItemsUS="navItemsUS" :navItemsCN="navItemsCN" />
     <!-- footer 总是放在应用底部，优先级低于 v-bottom-navigation -->
     <!-- <v-footer app>
       footer
@@ -45,7 +46,7 @@
 <script lang="ts">
 import NavBar from "@/components/navBar";
 import BottomNav from "@/components/bottomNav";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { navItemsUS, navItemsCN } from "@/libs/navData";
 import { INavItem } from "@/components/navBar/index.d";
 @Component({
@@ -58,8 +59,15 @@ export default class App extends Vue {
   private drawerFlag = false;
   private navItemsUS: INavItem[] = navItemsUS;
   private navItemsCN: INavItem[] = navItemsCN;
-  get drawer() {
-    return this.$vuetify.breakpoint.width > 960 || this.drawerFlag;
+  // 当屏幕尺寸 大于960 显示侧边栏导航
+  @Watch("$vuetify.breakpoint.width", { immediate: true })
+  handleWatchWidth(val: number) {
+    if (val > 960) {
+      this.drawerFlag = true;
+    }
+  }
+  mounted() {
+    (window as any).app = this;
   }
 }
 </script>

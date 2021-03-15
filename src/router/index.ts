@@ -35,8 +35,17 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "setting" */ "../views/setting")
+  },
+  {
+    path: "/todo",
+    name: "Todo",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "setting" */ "../views/todo")
   }
 ];
+console.log("process.env.BASE_URL",process.env.BASE_URL);
 
 const router = new VueRouter({
   mode: "hash",

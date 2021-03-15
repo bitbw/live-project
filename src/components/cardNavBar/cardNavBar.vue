@@ -1,13 +1,14 @@
 <template>
   <v-container class="pa-4 text-center">
     <v-row class="fill-height" align="center" justify="center">
-      <template v-for="(item, i) in items">
+      <template v-for="(item, i) in navItems">
         <v-col :key="i" cols="12" md="4">
           <v-hover v-slot="{ hover }">
             <v-card
               :elevation="hover ? 12 : 2"
               :class="{ 'on-hover': hover }"
               v-ripple
+              :to="item.to"
             >
               <v-img :src="item.img" height="225px">
                 <v-card-title class="title white--text">
@@ -49,7 +50,8 @@ import { INavItem } from "../navBar/index.d";
   components: {}
 })
 export default class NavBar extends Vue {
-  @Prop({ type: Array, default: () => [] }) readonly navItems?: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsUS?: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsCN?: INavItem[];
 
   private selectedItem = 1;
   private items = [
@@ -72,6 +74,20 @@ export default class NavBar extends Vue {
       img: "https://cdn.vuetifyjs.com/images/cards/plane.jpg"
     }
   ];
+  get navItems() {
+    const navItems =
+      this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
+    const cardNavs: INavItem[] = [];
+    for (const [i, nav] of (navItems as INavItem[]).entries()) {
+      const newNav: INavItem = {
+        ...nav,
+        ...(this.items[i] ? this.items[i] : this.items[0]),
+        title: nav.text
+      };
+      cardNavs.push(newNav);
+    }
+    return cardNavs;
+  }
 }
 </script>
 <style scoped>

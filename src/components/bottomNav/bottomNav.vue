@@ -1,85 +1,63 @@
 <template>
+  <!--  :background-color="color" -->
   <v-bottom-navigation
     v-model="value"
-    :background-color="color"
+    color="teal"
+    grow
     app
-    dark
     shift
-    :input-value="$vuetify.breakpoint.width<=960"
+    :input-value="$vuetify.breakpoint.width <= 960"
+    hide-on-scroll
   >
-    <v-btn>
-      <span>Video{{ height }}</span>
-
-      <v-icon>mdi-television-play</v-icon>
-    </v-btn>
-
-    <v-btn>
-      <span>Music</span>
-
-      <v-icon>mdi-music-note</v-icon>
-    </v-btn>
-
-    <v-btn>
-      <span>Book</span>
-
-      <v-icon>mdi-book</v-icon>
-    </v-btn>
-
-    <v-btn>
-      <span>Image</span>
-
-      <v-icon>mdi-image</v-icon>
-    </v-btn>
+    <template v-for="(item, i) in navItems">
+      <v-btn :key="i + item.name" :to="item.to">
+        <span>{{ item.name }}</span>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
+    </template>
   </v-bottom-navigation>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { INavItem } from "../navBar/index.d";
 @Component({
   components: {}
 })
 export default class BottomNav extends Vue {
-  value = 1;
-  get color() {
-    switch (this.value) {
-      case 0:
-        return "blue-grey";
-      case 1:
-        return "teal";
-      case 2:
-        return "brown";
-      case 3:
-        return "indigo";
-      default:
-        return "blue-grey";
-    }
+  @Prop({ type: Array, default: () => [] }) readonly navItemsUS!: INavItem[];
+  @Prop({ type: Array, default: () => [] }) readonly navItemsCN!: INavItem[];
+  get navItems(): INavItem[] {
+    const navItems: INavItem[] =
+      this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
+    return navItems;
   }
-  get height() {
-    console.log("this.$vuetify.breakpoint.name", this.$vuetify.breakpoint,this.$vuetify.breakpoint.width,this.$vuetify.breakpoint.mobile,this.$vuetify.breakpoint.name);
-    switch (this.$vuetify.breakpoint.name) {
-      case "xs":
-        return 220;
-      case "sm":
-        return 400;
-      case "md":
-        return 500;
-      case "lg":
-        return 600;
-      case "xl":
-        return 800;
-    }
-    return 800;
-  }
+  value = 0;
+  // mounted(){
+  //   console.log("Bowen: BottomNav -> mounted -> this.$route.path", this.$route)
+  //   console.log("Bowen: BottomNav -> mounted -> index", this.navItems.findIndex(i => i.to === this.$route.path))
+  //   this.value = this.navItems.findIndex(i => i.to === this.$route.path);
+  // }
+  // value = this.navItems[0].name;
+  // get color() {
+  //   switch (this.value) {
+  //     case 'home':
+  //       return "blue-grey";
+  //     case 1:
+  //       return "teal";
+  //     case 2:
+  //       return "brown";
+  //     case 3:
+  //       return "indigo";
+  //     default:
+  //       return "blue-grey";
+  //   }
+  // }
 }
 </script>
 <style lang="scss" scoped>
+// 处理底部导航的特殊情况
 .v-item-group.v-bottom-navigation .v-btn {
   height: inherit;
 }
-// .v-item-group.v-bottom-navigation--shift .v-btn .v-btn__content > *:not(.v-icon) {
-//   top: calc(100% - 12px);
-// }
-// .v-item-group.v-bottom-navigation{
-//   align-items: center;
-// }
 </style>
