@@ -1,6 +1,7 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
   outputDir: "dist",
-  publicPath: process.env.NODE_ENV === "production" ? "/live-project/" : "/",
-  // publicPath: process.env.NODE_ENV === "production" ? "" : "/",
+  // git page 需要指定公共路径为仓库名 否则会找不到index.html 中连接的资源
+  publicPath: process.env.NODE_ENV === "production" ? "/live-project/" : "./",
+  // publicPath: "./",
 };

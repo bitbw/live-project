@@ -28,6 +28,14 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "subway" */ "../views/subway")
   },
   {
+    path: "/time",
+    name: "Time",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "time" */ "../views/time")
+  },
+  {
     path: "/setting",
     name: "Setting",
     // route level code-splitting
@@ -42,13 +50,13 @@ const routes: Array<RouteConfig> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "setting" */ "../views/todo")
+    component: () => import(/* webpackChunkName: "todo" */ "../views/todo")
   }
 ];
 console.log("process.env.BASE_URL",process.env.BASE_URL);
 
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 });

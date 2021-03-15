@@ -1,6 +1,6 @@
 <template>
   <v-container class="pa-4 text-center">
-    <v-row class="fill-height" align="center" justify="center">
+    <v-row class="fill-height" align="center" justify="start">
       <template v-for="(item, i) in navItems">
         <v-col :key="i" cols="12" md="4">
           <v-hover v-slot="{ hover }">

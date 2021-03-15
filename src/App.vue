@@ -29,9 +29,9 @@
     </v-navigation-drawer>
     <!-- 主视图 当使用 vue-router 时，建议将你的视图放在 v-main 内。 -->
     <v-main app>
-      <v-container fluid>
+      <!-- <v-container fluid> -->
         <router-view />
-      </v-container>
+      <!-- </v-container> -->
     </v-main>
 
     <!-- 底部导航 总是放在应用底部，优先级高于 v-footer -->
