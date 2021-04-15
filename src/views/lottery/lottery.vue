@@ -171,6 +171,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { ILotteryDate, Iitem } from "./index.d";
 @Component({})
+
 export default class Lottery extends Vue {
   public refs!: { [x: string]: any };
   // 双色
