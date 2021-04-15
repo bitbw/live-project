@@ -9,6 +9,6 @@ const messages = {
 };
 
 export default new VueI18n({
-  locale: "en-US",
+  locale: "zh-CN",
   messages
 });

@@ -169,11 +169,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { ILotteryDate, Iitem } from "./index.d";
 @Component({})
 export default class Lottery extends Vue {
   public refs!: { [x: string]: any };
   // 双色
-  private twoToneData: any = {
+  private twoToneData: ILotteryDate = {
     showName: this.$t("lottery.twoTone"),
     name: "twoTone",
     beforeOption: {
@@ -187,8 +188,8 @@ export default class Lottery extends Vue {
     beforeSelected: [],
     afterSelected: []
   };
-  // 超级大
-  private superBigData: any = {
+  // 超级
+  private superBigData: ILotteryDate = {
     showName: this.$t("lottery.superBig"),
     name: "superBig",
     beforeOption: {
@@ -203,26 +204,30 @@ export default class Lottery extends Vue {
     afterSelected: []
   };
   // 集合
-  private dataGroups = [this.twoToneData, this.superBigData];
+  private dataGroups: ILotteryDate[] = [this.twoToneData, this.superBigData];
   private autoUpdate = false;
   private isUpdating = false;
   private name = this.$t("lottery.title");
   private title = "Get your own lucky number";
   private randomBtn = this.$t("lottery.getLuckyNumbers");
   mounted() {
+    // twoTone
     this.dataGroups[0].beforeRaw = this.getArray(1, 33);
     this.dataGroups[0].afterRaw = this.getArray(1, 16);
+    //  superBig
     this.dataGroups[1].beforeRaw = this.getArray(1, 35);
     this.dataGroups[1].afterRaw = this.getArray(1, 12);
   }
-  getArray(before = 1, after = 35) {
-    const temp = [];
+  // 获取指定的数字集合
+  getArray(before = 1, after = 35): Iitem[] {
+    const temp: Iitem[] = [];
     for (let i = before; i <= after; i++) {
       const obj = { name: i.toString(), id: i };
       temp.push(obj);
     }
     return temp;
   }
+  // 点击获取
   handleRandom(dataGroup: any) {
     const { name, beforeRaw, afterRaw } = dataGroup;
     // let { beforeSelected, afterSelected } = dataGroup;
@@ -234,14 +239,16 @@ export default class Lottery extends Vue {
       dataGroup.afterSelected = this.getRandomArray(2, afterRaw);
     }
   }
-  getRandomArray(beforeNum: number, rawArray: any[]) {
-    const tempArray: any[] = JSON.parse(JSON.stringify(rawArray));
-    const tempSelected: any[] = [];
+  // 获取随机集合
+  getRandomArray(beforeNum: number, rawArray: Iitem[]) {
+    const tempArray: Iitem[] = JSON.parse(JSON.stringify(rawArray));
+    const tempSelected: Iitem[] = [];
     for (let i = 1; i <= beforeNum; i++) {
       const randomIndex = Math.floor(Math.random() * tempArray.length);
       tempSelected.push(tempArray[randomIndex]);
       tempArray.splice(randomIndex, 1);
     }
+    tempSelected.sort((a, b) => a.id - b.id);
     return tempSelected;
   }
   handleUpdate() {
@@ -249,8 +256,8 @@ export default class Lottery extends Vue {
       this.handleRandom(Group);
     }
   }
-  remove(selected: any[], item: any) {
-    const index = selected.indexOf(item.id);
+  remove(selected: Iitem[], item: Iitem) {
+    const index = selected.findIndex(i => i.id === item.id);
     if (index >= 0) selected.splice(index, 1);
   }
 }

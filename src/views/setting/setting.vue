@@ -16,8 +16,8 @@
         v-model="$i18n.locale"
       ></v-select>
     </v-toolbar>
-
-    <v-card-text>
+    <!-- test -->
+    <!-- <v-card-text>
       <v-list>
         <v-subheader>I inherit dark from my parent</v-subheader>
 
@@ -41,7 +41,7 @@
           </v-list-item>
         </v-list>
       </v-theme-provider>
-    </v-card-text>
+    </v-card-text> -->
   </v-card>
 </template>
 
@@ -51,7 +51,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 export default class Setting extends Vue {
   @Prop({ type: Object, default: () => ({}) }) readonly attrs: any;
   public refs!: { [x: string]: any };
-  private items = ["One", "Two", "Three"];
+  // private items = ["One", "Two", "Three"];
   // 语言选项列表
   get languageList() {
     return Object.keys(this.$i18n.messages);
