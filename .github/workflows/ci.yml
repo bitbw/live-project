@@ -24,11 +24,11 @@ jobs:
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          ls
+          ls -ahl
           rm -rf node_modules
           npm install
           npm run build
-          ls
+          ls -ahl
 
       - name: Build and Deploy
         # 构建发布 Github pages
@@ -50,4 +50,3 @@ jobs:
         #   FOLDER: dist # The folder the action should deploy.
         #   # 在向 BRANCH 分支推送代码前，可以指定构建脚本
         #   BUILD_SCRIPT: npm install && npm run build # The build script the action should run prior to deploying.
-
