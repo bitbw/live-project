@@ -1,5 +1,5 @@
 <template>
-  <v-card dark flat class="setting-container">
+  <v-card  flat class="setting-container">
     <v-toolbar flat height="72">
       <v-switch
         v-model="$vuetify.theme.dark"

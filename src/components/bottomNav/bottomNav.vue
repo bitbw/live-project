@@ -1,16 +1,8 @@
 <template>
-  <!--  :background-color="color" -->
-  <v-bottom-navigation
-    v-model="value"
-    color="teal"
-    grow
-    app
-    shift
-    :input-value="$vuetify.breakpoint.width <= 960"
-    hide-on-scroll
-  >
+  <!--   hide-on-scroll-->
+  <v-bottom-navigation app v-model="value" dark grow shift :background-color="color">
     <template v-for="(item, i) in navItems">
-      <v-btn :key="i + item.name" :to="item.to">
+      <v-btn :key="i + item.name" :to="item.to" :text="true">
         <span>{{ item.name }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
@@ -39,20 +31,20 @@ export default class BottomNav extends Vue {
   //   this.value = this.navItems.findIndex(i => i.to === this.$route.path);
   // }
   // value = this.navItems[0].name;
-  // get color() {
-  //   switch (this.value) {
-  //     case 'home':
-  //       return "blue-grey";
-  //     case 1:
-  //       return "teal";
-  //     case 2:
-  //       return "brown";
-  //     case 3:
-  //       return "indigo";
-  //     default:
-  //       return "blue-grey";
-  //   }
-  // }
+  get color() {
+    switch (this.value) {
+      case 0:
+        return "blue-grey";
+      case 1:
+        return "teal";
+      case 2:
+        return "pink";
+      case 3:
+        return "purple darken-2";
+      default:
+        return "blue-grey lighten-2";
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

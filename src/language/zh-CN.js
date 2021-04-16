@@ -17,6 +17,11 @@ module.exports = {
     upperLimit: "上限",
     discont: "折扣"
   },
+  time:{
+    year:"年",
+    month:"月",
+    day:"日",
+  },
   name: "名称",
   add: "添加",
   calculate: "计算",

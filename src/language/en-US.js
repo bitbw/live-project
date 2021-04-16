@@ -17,6 +17,11 @@ module.exports = {
     upperLimit: "Upper Limit",
     discont: "Discont"
   },
+  time:{
+    year:"year",
+    month:"month",
+    day:"day",
+  },
   name: "Name",
   add: "Add",
   calculate: "Calculate",
