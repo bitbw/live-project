@@ -140,15 +140,15 @@ export default class Subway extends Vue {
     }
     const firstLadder = this.ladders[0];
     const starDate = {
-      currentTotalMoney: firstLadder.lowerLimit, // 当前阶段前面所有money的汇总
-      currentTotalFrequency: 0 // 当前阶段前面所有次数的汇总
+      starMoney: firstLadder.lowerLimit, // 当前阶段前面所有money的汇总
+      starFrequency: 0, // 当前阶段前面所有次数的汇总
+      done: false // 结束标识
     };
     // use reduce
-    const { currentTotalMoney } = this.ladders.reduce(
+    const { starMoney: totalMoney } = this.ladders.reduce(
       (total: any, ladder) => {
         const option = {
-          starMoney: total.currentTotalMoney,
-          starFrequency: total.currentTotalFrequency,
+          ...total,
           moneySpentEachTime: this.moneySpentEachTime,
           totalFrequency: this.totalFrequency
         };
@@ -156,7 +156,7 @@ export default class Subway extends Vue {
       },
       starDate
     );
-    this.resultMoney = currentTotalMoney;
+    this.resultMoney = totalMoney;
   }
   // add
   private handleAddladder() {

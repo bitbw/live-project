@@ -20,6 +20,7 @@ export class Ladder {
    * @param { number } starFrequency  当前阶段前面所有次数的汇总
    * @param { number } moneySpentEachTime  每次money
    * @param { number } totalFrequency  总次数
+   * @param { boolean } done  结束标识
    * @return { object }  返回加上本阶段的汇总数据
    */
   calc(option: any) {
@@ -29,9 +30,18 @@ export class Ladder {
       moneySpentEachTime,
       totalFrequency
     } = option;
+    let done = option.done;
+    // 如果结束直接返回上次的汇总
+    if (done) {
+      return {
+        starMoney,
+        starFrequency,
+        done
+      };
+    }
     // 上限正常是数字的情况
     if (typeof this.upperLimit === "number") {
-      // 当前阶段的次数 = 上限 - 当前阶段前面所有money的汇总 as 当前阶段的价格区间，/ 每次money * 折扣 as 当前区间每次money
+      // 当前阶段的次数 =( (上限 - 当前阶段前面所有money的汇总) as 当前阶段的价格区间) / ((每次money * 折扣) as 当前区间每次money)
       this.frequency = Math.ceil(
         (this.upperLimit - starMoney) /
           (moneySpentEachTime * (this.discont / 100))
@@ -41,11 +51,22 @@ export class Ladder {
       // 最后阶段的次数 = 总次数 - 当前阶段前面所有次数的汇总
       this.frequency = totalFrequency - starFrequency;
     }
+    let currentTotalFrequency = this.frequency + starFrequency;
+    // 如果当前阶段的频率 超过 总频率 那就视为最后阶段，同时将结束标识设置为ture
+    if (currentTotalFrequency > totalFrequency) {
+      // 最后阶段的次数 = 总次数 - 当前阶段前面所有次数的汇总
+      this.frequency = totalFrequency - starFrequency;
+      currentTotalFrequency = this.frequency + starFrequency;
+      done = true;
+    }
+    // 当前阶段钱数 = 阶段的次数 *  ((每次money * 折扣) as 当前区间每次money)
     this.money = this.frequency * moneySpentEachTime * (this.discont / 100);
+    const currentTotalMoney = this.money + starMoney;
     // 返回加上本阶段的汇总数据
     return {
-      currentTotalMoney: this.money + starMoney,
-      currentTotalFrequency: this.frequency + starFrequency
+      starMoney: currentTotalMoney,
+      starFrequency: currentTotalFrequency,
+      done
     };
   }
 }
