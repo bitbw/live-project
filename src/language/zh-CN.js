@@ -2,7 +2,7 @@ module.exports = {
   lottery: {
     twoTone: "双色球",
     redball: "红球",
-    basketball: "蓝球",
+    blueball: "蓝球",
     superBig: "大乐透",
     frontZone: "前区",
     backZone: "后区",

@@ -182,7 +182,7 @@ export default class Lottery extends Vue {
       label: this.$t("lottery.redball")
     },
     afterOption: {
-      label: this.$t("lottery.basketball")
+      label: this.$t("lottery.blueball")
     },
     beforeRaw: [],
     afterRaw: [],
