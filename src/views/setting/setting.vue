@@ -1,21 +1,25 @@
 <template>
-  <v-card  flat class="setting-container">
-    <v-toolbar flat height="72">
-      <v-switch
-        v-model="$vuetify.theme.dark"
-        hint="This toggles the global state of the Vuetify theme"
-        inset
-        :label="$t('toggles') + ' ' + $t('setting.theme')"
-        persistent-hint
-      ></v-switch>
-    </v-toolbar>
-    <v-toolbar flat height="72">
-      <v-select
-        :items="languageList"
-        :label="$t('toggles') + ' ' + $t('setting.language')"
-        v-model="$i18n.locale"
-      ></v-select>
-    </v-toolbar>
+  <v-card flat class="setting-container">
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-switch
+          v-model="$vuetify.theme.dark"
+          hint="This toggles the global state of the Vuetify theme"
+          inset
+          :label="$t('toggles') + ' ' + $t('setting.theme')"
+          persistent-hint
+        ></v-switch>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-select
+          :items="languageList"
+          :label="$t('toggles') + ' ' + $t('setting.language')"
+          v-model="$i18n.locale"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <!-- <v-toolbar flat height="72"></v-toolbar>
+    <v-toolbar flat height="72"></v-toolbar> -->
     <!-- test -->
     <!-- <v-card-text>
       <v-list>
