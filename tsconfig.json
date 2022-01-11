@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "types": [
       "webpack-env",
       "vuetify",
@@ -29,7 +29,7 @@
       "scripthost"
     ]
   },
-  // "interface-name": [true, "never-prefix"],
+  "interface-name": [true, "never-prefix"],
   "include": [
     "src/**/*",
     "src/**/*.ts",
@@ -41,7 +41,7 @@
   "exclude": [
     "node_modules"
   ],
-  // "rules": {
-  //   "interface-name" : [true, "never-prefix"]
-  // }
+  "rules": {
+    "interface-name" : [true, "never-prefix"]
+  }
 }
