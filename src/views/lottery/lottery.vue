@@ -171,7 +171,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { ILotteryDate, Iitem } from "./index.d";
 @Component({})
-
 export default class Lottery extends Vue {
   public refs!: { [x: string]: any };
   // 双色
@@ -179,30 +178,30 @@ export default class Lottery extends Vue {
     showName: this.$t("lottery.twoTone"),
     name: "twoTone",
     beforeOption: {
-      label: this.$t("lottery.redball")
+      label: this.$t("lottery.redball"),
     },
     afterOption: {
-      label: this.$t("lottery.blueball")
+      label: this.$t("lottery.blueball"),
     },
     beforeRaw: [],
     afterRaw: [],
     beforeSelected: [],
-    afterSelected: []
+    afterSelected: [],
   };
   // 超级
   private superBigData: ILotteryDate = {
     showName: this.$t("lottery.superBig"),
     name: "superBig",
     beforeOption: {
-      label: this.$t("lottery.frontZone")
+      label: this.$t("lottery.frontZone"),
     },
     afterOption: {
-      label: this.$t("lottery.backZone")
+      label: this.$t("lottery.backZone"),
     },
     beforeRaw: [],
     afterRaw: [],
     beforeSelected: [],
-    afterSelected: []
+    afterSelected: [],
   };
   // 集合
   private dataGroups: ILotteryDate[] = [this.twoToneData, this.superBigData];
