@@ -21,10 +21,12 @@ jobs:
       - name: Checkout 🛎️
         # 使用的操作 actions，可以使用公共仓库，本地仓库，别人的仓库的action
         uses: actions/checkout@v2 # 将代码拷贝到虚机中
-      - name: NodeVersion
+      # 设置 nodejs 版本
+      - name: SetNodeVersion
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+      # nodejs 版本检查
       - name: NodeCheck
         run: node -v
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
