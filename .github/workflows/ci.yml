@@ -13,7 +13,9 @@ jobs:
   build-and-deploy:
     # 任务运行的容器类型（虚拟机环境）
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node: [14]
     # 任务执行的步骤
     steps:
       - name: NodeVersion
