@@ -13,18 +13,20 @@ jobs:
   build-and-deploy:
     # 任务运行的容器类型（虚拟机环境）
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [14]
     # 任务执行的步骤
     steps:
-      - name: NodeVersion
-        run: node -v
+    
       # 步骤名称
       # 拉取代码
       - name: Checkout 🛎️
         # 使用的操作 actions，可以使用公共仓库，本地仓库，别人的仓库的action
         uses: actions/checkout@v2 # 将代码拷贝到虚机中
+      - name: NodeVersion
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: NodeVersionCheck
+        run: node -v
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
           npm install
