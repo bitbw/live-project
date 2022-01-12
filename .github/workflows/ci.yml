@@ -29,6 +29,7 @@ jobs:
         # 使用github-pages-deploy-action: https://github.com/JamesIves/github-pages-deploy-action/tree/master
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
+          node-version: '14.x'
           # 存储库中要部署的文件夹。
           # 该步骤会将项目中 FOLDER 指定文件夹下的文件推送到 BRANCH 分支，作为Github Pages 部署的内容。
           branch: gh-pages # The branch the action should deploy to.
