@@ -7,9 +7,10 @@
     "build": "vue-cli-service build --report",
     "lint": "vue-cli-service lint",
     "update": "git add . && git commit -m update && git pull && git push",
+    "commit": "cz",
     "prepare": "husky install"
   },
-  "homepage": "https://zhangbowen-github.github.io/live-project/",
+  "homepage": "https://live.bitbw.top",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",

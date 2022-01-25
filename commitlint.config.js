@@ -3,10 +3,10 @@
  * @Autor: Bowen
  * @Date: 2022-01-25 10:04:44
  * @LastEditors: Bowen
- * @LastEditTime: 2022-01-25 10:11:37
+ * @LastEditTime: 2022-01-25 10:17:01
  */
 module.exports = {
-  // extends: ["@commitlint/config-conventional"], // 去除基本设置
+  // extends: ["@commitlint/config-conventional"], // 去除基本设置(去除了commit 的检查)
   // 定义规则类型
   rules: {
     // type 类型定义，表示 git 提交的 type 必须在以下类型范围内
