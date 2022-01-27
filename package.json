@@ -53,8 +53,7 @@
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint"
-    ],
-    "*.js": "eslint --cache --fix"
+    ]
   },
   "config": {
     "commitizen": {
