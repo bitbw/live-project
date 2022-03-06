@@ -1,5 +1,9 @@
 <template>
-  <div class="time-container" :style="`font-size:${rem}`" v-resize="handleResize">
+  <div
+    class="time-container"
+    :style="`font-size:${rem}`"
+    v-resize="handleResize"
+  >
     <!-- :class="`text-${$vuetify.breakpoint.name}-h1`" -->
     <div class="time-date">
       <span>
@@ -36,20 +40,19 @@ export default class Time extends Vue {
     const rem = this.$vuetify.breakpoint.width / 100 + "rem";
     return rem;
   }
-  handleResize(e:any){
-  console.log("Bowen: Time -> handleResize -> e", e)
-
+  handleResize(e: any) {
+    console.log("Bowen: Time -> handleResize -> e", e);
   }
   getDate() {
     const date: Date = new Date();
     this.date = {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate()
+      day: date.getDate(),
     };
     this.item = {
       hours: date.getHours(),
-      minutes: date.getMinutes()
+      minutes: date.getMinutes(),
     };
   }
   handleShow() {

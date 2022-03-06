@@ -27,8 +27,8 @@ import NumberInput from "./input.vue";
   components: {
     Father,
     SlotTeset,
-    NumberInput
-  }
+    NumberInput,
+  },
 })
 export default class TestIndex extends Vue {
   public refs!: { [x: string]: any };

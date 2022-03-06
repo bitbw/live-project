@@ -15,15 +15,15 @@ import { INavItem } from "@/components/navBar/index.d";
 @Component({
   components: {
     // HelloWorld,
-    CardNavBar
-  }
+    CardNavBar,
+  },
 })
 export default class Home extends Vue {
   private get navItemsUS(): INavItem[] {
-    return navItemsUS.filter(i => i.name !== "home");
+    return navItemsUS.filter((i) => i.name !== "home");
   }
   private get navItemsCN(): INavItem[] {
-    return navItemsCN.filter(i => i.name !== "home");
+    return navItemsCN.filter((i) => i.name !== "home");
   }
 }
 </script>

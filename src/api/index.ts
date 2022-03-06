@@ -14,5 +14,6 @@ export const image2pdf = (data: any) =>
     headers: {
       "Content-Type": "multipart/form-data",
     },
+    // 获取后端的流数据一定要设置 responseType 解析方式根据下载形式而定
     responseType: "blob",
   });

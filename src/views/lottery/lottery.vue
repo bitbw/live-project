@@ -158,9 +158,7 @@
         rounded
         @click="handleUpdate"
       >
-        <v-icon left>
-          mdi-update
-        </v-icon>
+        <v-icon left> mdi-update </v-icon>
         重置
       </v-btn>
     </v-card-actions>
@@ -257,7 +255,7 @@ export default class Lottery extends Vue {
     }
   }
   remove(selected: Iitem[], item: Iitem) {
-    const index = selected.findIndex(i => i.id === item.id);
+    const index = selected.findIndex((i) => i.id === item.id);
     if (index >= 0) selected.splice(index, 1);
   }
 }

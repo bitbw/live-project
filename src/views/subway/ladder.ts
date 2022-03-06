@@ -24,19 +24,15 @@ export class Ladder {
    * @return { object }  返回加上本阶段的汇总数据
    */
   calc(option: any) {
-    const {
-      starMoney,
-      starFrequency,
-      moneySpentEachTime,
-      totalFrequency
-    } = option;
+    const { starMoney, starFrequency, moneySpentEachTime, totalFrequency } =
+      option;
     let done = option.done;
     // 如果结束直接返回上次的汇总
     if (done) {
       return {
         starMoney,
         starFrequency,
-        done
+        done,
       };
     }
     // 上限正常是数字的情况
@@ -66,7 +62,7 @@ export class Ladder {
     return {
       starMoney: currentTotalMoney,
       starFrequency: currentTotalFrequency,
-      done
+      done,
     };
   }
 }
@@ -80,20 +76,20 @@ export const defaultLadders = () => [
     name: "lodder1",
     lowerLimit: 0,
     upperLimit: 100,
-    discont: 100
+    discont: 100,
   }),
   new Ladder({
     id: 2,
     name: "lodder2",
     lowerLimit: 100,
     upperLimit: 150,
-    discont: 80
+    discont: 80,
   }),
   new Ladder({
     id: 3,
     name: "lodder3",
     lowerLimit: 150,
     upperLimit: "*",
-    discont: 50
-  })
+    discont: 50,
+  }),
 ];

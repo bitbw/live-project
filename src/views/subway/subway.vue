@@ -127,7 +127,7 @@ export default class Subway extends Vue {
     lowerLimit: 0,
     discont: 0,
     name: "",
-    id: 0
+    id: 0,
   };
   // 阶梯  阶梯1  0-100  阶梯次数  100-150 阶梯3  150-infinity
   private ladders: Ladder[] = [];
@@ -142,7 +142,7 @@ export default class Subway extends Vue {
     const starDate = {
       starMoney: firstLadder.lowerLimit, // 当前阶段前面所有money的汇总
       starFrequency: 0, // 当前阶段前面所有次数的汇总
-      done: false // 结束标识
+      done: false, // 结束标识
     };
     // use reduce
     const { starMoney: totalMoney } = this.ladders.reduce(
@@ -150,7 +150,7 @@ export default class Subway extends Vue {
         const option = {
           ...total,
           moneySpentEachTime: this.moneySpentEachTime,
-          totalFrequency: this.totalFrequency
+          totalFrequency: this.totalFrequency,
         };
         return ladder.calc(option);
       },
@@ -168,7 +168,7 @@ export default class Subway extends Vue {
         lowerLimit,
         upperLimit: "*",
         id: this.ladders.length + 1,
-        name: `ladder${this.ladders.length + 1}`
+        name: `ladder${this.ladders.length + 1}`,
       })
     );
   }

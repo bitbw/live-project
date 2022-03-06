@@ -21,7 +21,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { INavItem } from "./index.d";
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class NavBar extends Vue {
   @Prop({ type: Array, default: () => [] }) readonly navItemsUS!: INavItem[];

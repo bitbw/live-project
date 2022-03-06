@@ -7,7 +7,7 @@ module.exports = {
     frontZone: "前区",
     backZone: "后区",
     getLuckyNumbers: "获取幸运数字",
-    title: "获取您专属的幸运数字"
+    title: "获取您专属的幸运数字",
   },
   subway: {
     moneySpentEachTime: "每次钱数",
@@ -15,22 +15,22 @@ module.exports = {
     ladder: "阶梯",
     lowerLimit: "下限",
     upperLimit: "上限",
-    discont: "折扣"
+    discont: "折扣",
   },
-  time:{
-    year:"年",
-    month:"月",
-    day:"日",
+  time: {
+    year: "年",
+    month: "月",
+    day: "日",
   },
   name: "名称",
   add: "添加",
   calculate: "计算",
   result: "结果",
   toggles: "切换",
-  todo:"待完成",
+  todo: "待完成",
   setting: {
     theme: "主题",
-    language: "语言"
+    language: "语言",
   },
-  menu: "菜单"
+  menu: "菜单",
 };

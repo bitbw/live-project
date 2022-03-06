@@ -1,7 +1,7 @@
 /*
  * @Description: 导航数据
  * @LastEditors: Bowen
- * @LastEditTime: 2021-11-05 11:30:26
+ * @LastEditTime: 2022-03-06 13:26:57
  */
 import { INavItem } from "@/components/navBar/index.d";
 const navItemsCN: INavItem[] = [
@@ -17,6 +17,12 @@ const navItemsCN: INavItem[] = [
     name: "subway",
     icon: "mdi-cash-multiple",
     to: "/subway",
+  },
+  {
+    text: "图片转pdf",
+    name: "img2pdf",
+    icon: "mdi-image",
+    to: "/img2pdf",
   },
   {
     text: "当前时间",
@@ -46,6 +52,12 @@ const navItemsUS: INavItem[] = [
     name: "subway",
     icon: "mdi-cash-multiple",
     to: "/subway",
+  },
+  {
+    text: "img2pdf",
+    name: "img2pdf",
+    icon: "mdi-image",
+    to: "/img2pdf",
   },
   {
     text: "Current Time",

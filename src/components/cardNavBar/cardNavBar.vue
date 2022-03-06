@@ -47,7 +47,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { INavItem } from "../navBar/index.d";
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class NavBar extends Vue {
   @Prop({ type: Array, default: () => [] }) readonly navItemsUS?: INavItem[];
@@ -59,20 +59,20 @@ export default class NavBar extends Vue {
       title: "New Releases",
       text: `It's New Release Friday`,
       subtext: "Newly released songs. Updated daily.",
-      img: "https://cdn.vuetifyjs.com/images/cards/house.jpg"
+      img: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
     },
     {
       title: "Rock",
       text: "Greatest Rock Hits",
       subtext: "Lose yourself in rock tunes.",
-      img: "https://cdn.vuetifyjs.com/images/cards/road.jpg"
+      img: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
     },
     {
       title: "Mellow Moods",
       text: "Ambient Bass",
       subtext: "Chill beats to mellow you out.",
-      img: "https://cdn.vuetifyjs.com/images/cards/plane.jpg"
-    }
+      img: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
+    },
   ];
   get navItems() {
     const navItems =
@@ -82,7 +82,7 @@ export default class NavBar extends Vue {
       const newNav: INavItem = {
         ...nav,
         ...(this.items[i] ? this.items[i] : this.items[0]),
-        title: nav.text
+        title: nav.text,
       };
       cardNavs.push(newNav);
     }

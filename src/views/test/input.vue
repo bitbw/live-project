@@ -25,11 +25,11 @@ export default {
     // value: { type: [String, Number], default: 1 },
 
     min: { type: [String, Number], default: "null" },
-    max: { type: [String, Number], default: "null" }
+    max: { type: [String, Number], default: "null" },
   },
   data() {
     return {
-      value: 1
+      value: 1,
     };
   },
   computed: {
@@ -37,10 +37,10 @@ export default {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       //   const vm = this;
       const inputListeners = Object.assign({}, this.$listeners, {
-        input: this.input
+        input: this.input,
       });
       return inputListeners;
-    }
+    },
   },
   mounted() {
     this.$listeners;
@@ -69,8 +69,8 @@ export default {
         return;
       }
       this.$emit("input", val);
-    }
-  }
+    },
+  },
 };
 </script>
 

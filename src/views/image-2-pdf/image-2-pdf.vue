@@ -32,13 +32,10 @@ export default class Image2PDF extends Vue {
     formdata.append("zip", this.file);
     this.loading = true;
     const res: any = await image2pdf(formdata);
+    // 文件名
     const disposition = res.headers["content-disposition"];
     const filename = disposition.split("=")[1];
-
-    console.log(
-      "Bowen ~ file: image-2-pdf.vue ~ line 51 ~ Image2PDF ~ handleUplod ~ res.data",
-      res.data
-    );
+    // 下载
     const link = document.createElement("a");
     // const ab = this.toArrayBuffer(res.data);
     const blob: Blob = new Blob([res.data], { type: "application/zip" });

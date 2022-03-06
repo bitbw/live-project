@@ -9,7 +9,7 @@
   <div>
     <h1>father</h1>
     <slot></slot>
-     <input type="text" v-model="input" />
+    <input type="text" v-model="input" />
     <div>{{ input }}</div>
     <h1>{{ getReUpdate() }}</h1>
     <Child />
@@ -26,9 +26,9 @@ import Child from "./child.vue";
 })
 export default class Father extends Vue {
   public refs!: { [x: string]: any };
-  input =666
+  input = 666;
   mounted() {
-    console.log("Bowen: Father -> mounted -> this.$options", this)
+    console.log("Bowen: Father -> mounted -> this.$options", this);
     console.log("Bowen: Father -> mounted -> mounted");
   }
   created() {
@@ -45,7 +45,7 @@ export default class Father extends Vue {
     console.log("Bowen: Father -> forceUpdate -> forceUpdate");
     this.$forceUpdate();
   }
-   destroyed() {
+  destroyed() {
     console.log("Bowen: Father -> destroyed -> destroyed");
   }
 }

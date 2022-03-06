@@ -21,17 +21,13 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { INavItem } from "../navBar/index.d";
 @Component({
-  components: {}
+  components: {},
 })
 export default class BottomNav extends Vue {
   @Prop({ type: Array, default: () => [] }) readonly navItemsUS!: INavItem[];
   @Prop({ type: Array, default: () => [] }) readonly navItemsCN!: INavItem[];
   get navItems(): INavItem[] {
     this.navItemsCN;
-    console.log(
-      "Bowen ~ file: bottomNav.vue ~ line 24 ~ BottomNav ~ getnavItems ~  this.navItemsCN",
-      this.navItemsCN
-    );
     const navItems: INavItem[] =
       this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
     return navItems.slice(0, 5);

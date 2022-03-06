@@ -2,10 +2,10 @@ export interface ILotteryDate {
   showName: any | string;
   name: string;
   beforeOption: {
-    label:  any | string;
+    label: any | string;
   };
   afterOption: {
-    label:  any | string;
+    label: any | string;
   };
   beforeRaw: Iitem[];
   afterRaw: Iitem[];

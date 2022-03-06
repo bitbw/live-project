@@ -7,7 +7,7 @@ module.exports = {
     frontZone: "Front zone",
     backZone: "Back zone",
     getLuckyNumbers: "Get lucky numbers",
-    title: "Get your own lucky number"
+    title: "Get your own lucky number",
   },
   subway: {
     moneySpentEachTime: "Money Spent Each Time",
@@ -15,12 +15,12 @@ module.exports = {
     ladder: "Ladder",
     lowerLimit: "Lower Limit",
     upperLimit: "Upper Limit",
-    discont: "Discont"
+    discont: "Discont",
   },
-  time:{
-    year:"year",
-    month:"month",
-    day:"day",
+  time: {
+    year: "year",
+    month: "month",
+    day: "day",
   },
   name: "Name",
   add: "Add",
@@ -30,7 +30,7 @@ module.exports = {
   todo: "To be determined",
   setting: {
     theme: "Theme",
-    language: "Language"
+    language: "Language",
   },
-  menu: "Menu"
+  menu: "Menu",
 };
