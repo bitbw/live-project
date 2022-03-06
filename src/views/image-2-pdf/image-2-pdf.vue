@@ -9,6 +9,7 @@
       chips
       show-size
       truncate-length="15"
+      accept=".zip"
     ></v-file-input>
     <v-btn @click="handleUplod" :loading="loading" :disabled="loading"
       >上传</v-btn
@@ -26,8 +27,14 @@ export default class Image2PDF extends Vue {
   loading = false;
   async handleUplod() {
     if (!this.file) {
+      window.alert("请选择文件");
       return;
     }
+    if (!this.file.type.includes("zip")) {
+      window.alert("请选择正确的类型");
+      return;
+    }
+
     const formdata = new FormData();
     formdata.append("zip", this.file);
     this.loading = true;
