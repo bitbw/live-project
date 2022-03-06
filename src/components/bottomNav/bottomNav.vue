@@ -1,6 +1,13 @@
 <template>
   <!--   hide-on-scroll-->
-  <v-bottom-navigation app v-model="value" dark grow shift :background-color="color">
+  <v-bottom-navigation
+    app
+    v-model="value"
+    dark
+    grow
+    shift
+    :background-color="color"
+  >
     <template v-for="(item, i) in navItems">
       <v-btn :key="i + item.name" :to="item.to" :text="true">
         <span>{{ item.name }}</span>
@@ -20,9 +27,14 @@ export default class BottomNav extends Vue {
   @Prop({ type: Array, default: () => [] }) readonly navItemsUS!: INavItem[];
   @Prop({ type: Array, default: () => [] }) readonly navItemsCN!: INavItem[];
   get navItems(): INavItem[] {
+    this.navItemsCN;
+    console.log(
+      "Bowen ~ file: bottomNav.vue ~ line 24 ~ BottomNav ~ getnavItems ~  this.navItemsCN",
+      this.navItemsCN
+    );
     const navItems: INavItem[] =
       this.$i18n.locale === "en-US" ? this.navItemsUS : this.navItemsCN;
-    return navItems;
+    return navItems.slice(0, 5);
   }
   value = 0;
   // mounted(){
